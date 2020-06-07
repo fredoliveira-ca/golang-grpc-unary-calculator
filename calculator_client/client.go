@@ -22,15 +22,15 @@ func main() {
 }
 
 func doUnaryCall(calc calculatorpb.CalculatorServiceClient) {
-	fmt.Println("Startin to call an unary RPC call...!")
+	fmt.Println("Startin an unary RPC call...!")
 	request := &calculatorpb.SumRequest{
-		FisrtNumber: 1423,
-		SecondNumber: 1548,
+		FisrtNumber: 2,
+		SecondNumber: 2,
 	}
 
 	response, err := calc.Sum(context.Background(), request)
 	if err != nil {
-		log.Fatalf("Failed while calling RPC call: %v", err)
+		log.Fatalf("A failure occurred while calling server: %v", err)
 	}
 	log.Printf("Response: %v", response.SumResult)
 }
