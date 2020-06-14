@@ -1,15 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"context"
+	"fmt"
 	"log"
 	"net"
+
 	"google.golang.org/grpc"
+
 	"github.com/fredoliveira-ca/golang-grpc/calculator/calculatorpb"
 )
 
-type server struct {}
+type server struct{}
 
 func main() {
 	fmt.Println("Calculator Server is runnig and waiting to serve...")
@@ -27,14 +29,15 @@ func main() {
 	}
 }
 
-func (*server) Sum(ctx context.Context, req *calculatorpb.SumRequest) (*calculatorpb.SumResponse, error) {
+func (*server) Calculate(ctx context.Context, req *calculatorpb.Request) (*calculatorpb.Response, error) {
 	fmt.Printf("Received RPC call: %v \n", req)
-	
+
 	firstNumber := req.FisrtNumber
 	secondNumber := req.SecondNumber
-	sum := firstNumber + secondNumber
-	
-	return &calculatorpb.SumResponse {
-		SumResult: sum,
+	operation := req.Operation
+	result := service.Calculate(firstNumber, secondNumber, operation)
+
+	return &calculatorpb.Response{
+		Result: result,
 	}, nil
 }

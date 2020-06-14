@@ -3,15 +3,16 @@ syntax = "proto3";
 package calculator;
 option go_package = "calculatorpb";
 
-message SumRequest {
-    int32 fisrt_number = 1;
-    int32 second_number = 2;
+message Request {
+    float fisrt_number = 1;
+    float second_number = 2;
+    float operation = 3;
 }
 
-message SumResponse {
-    int32 sum_result = 1;
+message Response {
+    float result = 1;
 }
 
 service CalculatorService {
-    rpc Sum(SumRequest) returns (SumResponse) {};
+    rpc Calculate(Request) returns (Response) {};
 }
