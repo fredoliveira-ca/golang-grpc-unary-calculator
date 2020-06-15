@@ -16,6 +16,27 @@ func TestSumOnePlusOne(t *testing.T) {
 	}
 }
 
+func TestSum(t *testing.T) {
+	tests := []struct {
+		fisrtNumber  float32
+		secondNumber float32
+		expected     float32
+	}{
+		{34535, 34, 34569},
+		{-1542, 423, -1119},
+		{0, 1, 1},
+	}
+
+	sumOperator := 1
+
+	for _, test := range tests {
+		total, _ := service.Calculate(test.fisrtNumber, test.secondNumber, sumOperator)
+		if total != test.expected {
+			t.Errorf("Result of (%v+%v) is wrong, got: %v, expected: %v.", test.fisrtNumber, test.secondNumber, total, test.expected)
+		}
+	}
+}
+
 func TestSumOnePlusTwo(t *testing.T) {
 	sumOperator := 1
 	actual, _ := service.Calculate(1, 2, sumOperator)
